@@ -8,10 +8,12 @@ export const auth = (req, res, next) => {
     }
 
     jwt.verify(token, process.env.SIGN_UP,
-     (err) => {
+     (err, decoded) => {
         if (err) {
             return res.status(401).json({ message: 'Authorization key is not valid' });
         }
+
+        req.user = decoded
 
         next();
 });

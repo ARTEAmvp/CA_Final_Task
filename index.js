@@ -2,12 +2,18 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import mongoose from 'mongoose';
+import UserRouter from './src/routes/user.js'
+import QuestionRouter from './src/routes/question.js'
+import AnswerRouter from './src/routes/answer.js'
 
 const app = express();
 
 app.use(cors());
 
 app.use(express.json());
+app.use(UserRouter);
+app.use(QuestionRouter)
+app.use(AnswerRouter)
 
 mongoose
   .connect(process.env.MONGOOSE_CONNECTION)
