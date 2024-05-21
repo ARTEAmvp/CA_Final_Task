@@ -7,7 +7,7 @@ import { GET_ANSWERS, POST_ANSWER, DELETE_ANSWER } from '../controllers/answer.j
 const router = express.Router()
 
 router.get('/question/:id/answers', GET_ANSWERS);
-router.post('/question/:id/answers', validateData(answerValidation), POST_ANSWER);
+router.post('/question/:id/answer', validateData(answerValidation), POST_ANSWER);
 router.delete('/answer/:id', auth, DELETE_ANSWER);
 
 export default router
