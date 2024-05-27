@@ -6,6 +6,7 @@ export const CREATE_QUESTION = async (req, res) => {
         const question = new questionModel({
             id: uuidv4(),
             question_text: req.body.question_text,
+            question_title: req.body.question_title,
             date: new Date(),
             user_id: req.user.user_id
         })
@@ -39,5 +40,21 @@ export const DELETE_QUESTION_BY_ID = async (req, res) => {
 
     }catch(err){
         return console.log({err: err})
+    }
+}
+
+export const GET_QUESTION_BY_ID = async (req, res) => {
+    try {
+        const question = await questionModel.findOne({ id: req.params.id });
+
+        if (!question) {
+            return res.status(404).json('There is no question with such an id');
+        }
+
+        return res.status(200).json({ message: 'Question retrieved successfully', question: question });
+
+    } catch (err) {
+        console.log({ err: err });
+        return res.status(500).json('An error occurred while retrieving the question');
     }
 }

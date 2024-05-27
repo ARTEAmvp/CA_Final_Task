@@ -49,7 +49,7 @@ export const LOG_IN = async (req, res) => {
             }
         )
 
-        return res.status(200).json({message: 'logged in successfully', jwt: jwt_token})
+        return res.status(200).json({message: 'logged in successfully', jwt_token: jwt_token})
 
     }catch(err) {
         return console.log({err: err})

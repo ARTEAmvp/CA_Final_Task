@@ -1,11 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const answerSchema = mongoose.Schema({
-    id: {type: String, required: true},
-    answer_text: {type: String, required: true},
-    date: {type: Date, required: true},
-    gained_likes_number: {type: Number, required: false},
-    question_id: {type: String, required: true}
-})
+const answerSchema = new mongoose.Schema({
+    id: { type: String, required: true },
+    answer_text: { type: String, required: true },
+    date: { type: Date, required: true },
+    likes: { type: [String], default: [] },
+    dislikes: { type: [String], default: [] },
+    question_id: { type: String, required: true }
+});
 
-export default mongoose.model("Answer", answerSchema)
+export default mongoose.model('Answer', answerSchema);
